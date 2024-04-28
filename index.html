@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guide des sanctions RCFR</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 100%;
+  margin: 20px;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  color: #7289da;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  overflow-x: auto; /* Ajout de la barre de défilement horizontale */
+}
+
+table, th, td {
+  border: 1px solid #dddddd;
+}
+
+th, td {
+  padding: 8px;
+}
+
+th {
+  background-color: #f2f3f5;
+}
+
+tr:nth-child(even) {
+  background-color: #ffffff;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 8px;
+  margin-top: 10px;
+  box-sizing: border-box;
+  border: 1px solid #dddddd;
+  border-radius: 4px;
+}
+
+/* Légende */
+.legend {
+  margin-top: 10px;
+}
+
+.legend-item {
+  margin-right: 20px;
+  display: inline-block;
+  font-size: 14px;
+}
+
+.legend-item .icon {
+  margin-right: 5px;
+}
+
+/* Styles pour les icônes des sanctions */
+.icon {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 5px;
+}
+
+.icon-warning {
+  color: #ffc107; /* Couleur pour avertissement */
+}
+
+.icon-kick {
+  color: #f44336; /* Couleur pour kick */
+}
+
+.icon-mute {
+  color: #2196f3; /* Couleur pour mute */
+}
+
+.icon-ban {
+  color: #9c27b0; /* Couleur pour ban */
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Guide des sanctions RCFR</h1>
+
+  <input type="text" id="searchInput" onkeyup="searchTable()" placeholder="Rechercher une sanction...">
+
+  <table id="sanctionsTable">
+    <thead>
+      <tr>
+        <th>Sanction</th>
+        <th>Temps</th>
+        <th>Raison de la sanction</th>
+        <th>Violation de quel article</th>
+        <th>Exemples</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Tableau complet des sanctions -->
+      <tr>
+        <td><span class="icon icon-warning fas fa-exclamation-triangle"></span> Avertissement</td>
+        <td>N/A</td>
+        <td>Comportement inapproprié, non respect des règles du serveur</td>
+        <td>Articles 1.1, 1.2, 2.1, 2.2, 3.1, 4.1, 4.2, 5.1, 6.1, 6.2, 7.1, 8.1, 8.2</td>
+        <td>Utilisateur utilisant un langage grossier dans le chat général, poste de contenu inapproprié dans un canal de discussion spécifique</td>
+      </tr>
+      <tr>
+        <td><span class="icon icon-kick fas fa-ban"></span> Kick</td>
+        <td>N/A</td>
+        <td>Infractions mineures, avertissements ignorés</td>
+        <td>Articles 1.1, 1.2, 2.1, 2.2, 3.1, 4.1, 4.2, 5.1, 6.1, 6.2, 7.1, 8.1, 8.2</td>
+        <td>Spamming dans le canal général, hors-sujet persistant dans une discussion spécifique</td>
+      </tr>
+      <tr>
+        <td><span class="icon icon-mute fas fa-volume-mute"></span> Mute temporaire</td>
+        <td>5 minutes</td>
+        <td>Langage inapproprié, violation de l'article 1.2</td>
+        <td>Article 1.2</td>
+        <td>Utilisateur utilisant des jurons de manière excessive</td>
+      </tr>
+      <tr>
+        <td><span class="icon icon-mute fas fa-volume-mute"></span> Mute temporaire</td>
+        <td>15 minutes</td>
+        <td>Harcèlement mineur, violation de l'article 1.1</td>
+        <td>Article 1.1</td>
+        <td>Utilisateur faisant des commentaires désobligeants</td>
+      </tr>
+      <tr>
+        <td><span class="icon icon-mute fas fa-volume-mute"></span> Mute temporaire</td>
+        <td>30 minutes</td>
+        <td>Violation des canaux et des sujets, violation de l'article 2.2</td>
+        <td>Article 2.2</td>
+        <td>Utilisateur postant du contenu hors-sujet dans plusieurs canaux</td>
+      </tr>
+      <tr>
+        <td><span class="icon icon-mute fas fa-volume-mute"></span> Mute temporaire</td>
+        <td>1 heure</td>
+        <td>Insultes, non respect des avertissements, violation de l'article 1.1, 3.1</td>
+        <td>Articles 1.1, 3.1</td>
+        <td>Utilisateur proférant des insultes envers d'autres membres</td>
+      </tr>
+      <tr>
+        <td><span class="icon icon-mute fas fa-volume-mute"></span> Mute temporaire</td>
+        <td>1 jour</td>
+        <td>Contenu inapproprié, récidive après des avertissements, violation de l'article 2.1</td>
+        <td>Article 2.1</td>        <td>Utilisateur partageant du contenu adulte ou choquant</td>
+      </tr>
+      <tr>
+        <td><span class="icon icon-mute fas fa-volume-mute"></span> Mute temporaire</td>
+        <td>1 semaine</td>
+        <td>Violation grave des règles, violation de l'article 8.1</td>
+        <td>Article 8.1</td>
+        <td>Utilisateur partageant du contenu violent ou exploiteur</td>
+      </tr>
+      <tr>
+        <td><span class="icon icon-ban fas fa-ban"></span> Ban temporaire</td>
+        <td>1 jour</td>
+        <td>Infractions graves, récidive malgré des avertissements, violation de l'article 3.1</td>
+        <td>Article 3.1</td>
+        <td>Utilisateur contestant publiquement les décisions des modérateurs malgré des avertissements précédents</td>
+      </tr>
+      <tr>
+        <td><span class="icon icon-ban fas fa-ban"></span> Ban temporaire</td>
+        <td>1 semaine</td>
+        <td>Comportement nuisible persistant, violation de l'article 5.1</td>
+        <td>Article 5.1</td>
+        <td>Utilisateur perturbant régulièrement le serveur</td>
+      </tr>
+      <tr>
+        <td><span class="icon icon-ban fas fa-ban"></span> Ban permanent</td>
+        <td>Permanent</td>
+        <td>Infractions graves répétées, non respect des règles fondamentales, violation de l'article 8.2</td>
+        <td>Article 8.2</td>
+        <td>Utilisateur faisant la promotion de contenu violent ou exploiteur, harcèlement répété envers un membre</td>
+      </tr>
+      <tr>
+        <td><span class="icon icon-ban fas fa-ban"></span> Ban permanent</td>
+        <td>Permanent</td>
+        <td>Partage de données personnelles, violation de l'article 4.2</td>
+        <td>Article 4.2</td>
+        <td>Utilisateur partageant les informations personnelles d'un membre sans autorisation</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Légende -->
+  <div class="legend">
+    <div class="legend-item"><span class="icon icon-warning fas fa-exclamation-triangle"></span> Avertissement</div>
+    <div class="legend-item"><span class="icon icon-kick fas fa-ban"></span> Kick</div>
+    <div class="legend-item"><span class="icon icon-mute fas fa-volume-mute"></span> Mute</div>
+    <div class="legend-item"><span class="icon icon-ban fas fa-ban"></span> Ban</div>
+  </div>
+</div>
+
+<script>
+function searchTable() {
+  // Récupérer la valeur de recherche
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("searchInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("sanctionsTable");
+  tr = table.getElementsByTagName("tr");
+
+  // Parcourir toutes les lignes de la table et masquer celles qui ne correspondent pas à la recherche
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td");
+    for (var j = 0; j < td.length; j++) {
+      if (td[j]) {
+        txtValue = td[j].textContent || td[j].innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          tr[i].style.display = "";
+          break;
+        } else {
+          tr[i].style.display = "none";
+        }
+      }
+    }
+  }
+}
+</script>
+
+</body>
+</html>
