@@ -1,244 +1,424 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Guide des sanctions RCFR</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-<style>
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f0f0f0;
-  margin: 0;
-  padding: 0;
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>War Tycoon</title>
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            margin: 0;
+            padding: 0;
+            background-image: url('https://www.transparenttextures.com/patterns/dark-matter.png');
+            color: #fff;
+            background-color: #2b2b2b;
+        }
 
-.container {
-  max-width: 100%;
-  margin: 20px;
-  padding: 20px;
-  background-color: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
+        main {
+            padding: 1rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
 
-h1 {
-  color: #7289da;
-}
+        section {
+            margin-bottom: 2rem;
+            background-color: #333;
+            padding: 1rem;
+            border-radius: 10px;
+        }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
-  overflow-x: auto; /* Ajout de la barre de défilement horizontale */
-}
+        h2 {
+            border-bottom: 2px solid #777;
+            padding-bottom: 0.5rem;
+        }
 
-table, th, td {
-  border: 1px solid #dddddd;
-}
+        form {
+            display: grid;
+            gap: 1rem;
+        }
 
-th, td {
-  padding: 8px;
-}
+        label {
+            font-weight: bold;
+        }
 
-th {
-  background-color: #f2f3f5;
-}
+        input, select, textarea {
+            padding: 0.5rem;
+            border: 1px solid #777;
+            border-radius: 5px;
+            background-color: #444;
+            color: #fff;
+        }
 
-tr:nth-child(even) {
-  background-color: #ffffff;
-}
+        button {
+            padding: 0.7rem;
+            background-color: #555;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
 
-input[type="text"] {
-  width: 100%;
-  padding: 8px;
-  margin-top: 10px;
-  box-sizing: border-box;
-  border: 1px solid #dddddd;
-  border-radius: 4px;
-}
+        button:hover {
+            background-color: #777;
+        }
 
-/* Légende */
-.legend {
-  margin-top: 10px;
-}
+        .security-low {
+            color: green;
+        }
 
-.legend-item {
-  margin-right: 20px;
-  display: inline-block;
-  font-size: 14px;
-}
+        .security-medium {
+            color: orange;
+        }
 
-.legend-item .icon {
-  margin-right: 5px;
-}
+        .security-high {
+            color: red;
+        }
 
-/* Styles pour les icônes des sanctions */
-.icon {
-  width: 20px;
-  height: 20px;
-  display: inline-block;
-  vertical-align: middle;
-  margin-right: 5px;
-}
+        .vehicle-selection {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
 
-.icon-warning {
-  color: #ffc107; /* Couleur pour avertissement */
-}
+        .vehicle-selection div {
+            display: flex;
+            align-items: center;
+        }
 
-.icon-kick {
-  color: #f44336; /* Couleur pour kick */
-}
+        .vehicle-selection div select {
+            margin-right: 0.5rem;
+        }
 
-.icon-mute {
-  color: #2196f3; /* Couleur pour mute */
-}
+        .vehicle-selection div input {
+            width: 50px;
+            margin-right: 0.5rem;
+        }
 
-.icon-ban {
-  color: #9c27b0; /* Couleur pour ban */
-}
-</style>
+        .add-vehicle-btn {
+            margin-top: 0.5rem;
+            background-color: #666;
+        }
+
+        .form-section {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+    </style>
 </head>
 <body>
+    <main>
+        <section id="operation-management">
+            <h2>Gérer les Opérations</h2>
+            <form id="operation-form">
+                <div class="form-section">
+                    <label for="operation-type">Type d'Opération:</label>
+                    <input type="text" id="operation-type" name="operation-type" required>
+                </div>
 
-<div class="container">
-  <h1>Guide des sanctions RCFR</h1>
+                <div class="form-section">
+                    <label for="base-attack">Base d'Attaque:</label>
+                    <select id="base-attack" name="base-attack" required>
+                        <option value="Alpha">Alpha</option>
+                        <option value="Delta">Delta</option>
+                        <option value="Charlie">Charlie</option>
+                        <option value="Foxtrot">Foxtrot</option>
+                        <option value="Omega">Omega</option>
+                        <option value="Lima">Lima</option>
+                        <option value="Zulu">Zulu</option>
+                        <option value="Tango">Tango</option>
+                        <option value="Victor">Victor</option>
+                        <option value="Echo">Echo</option>
+                    </select>
+                </div>
 
-  <input type="text" id="searchInput" onkeyup="searchTable()" placeholder="Rechercher une sanction...">
+                <div class="form-section">
+                    <label for="vehicles-land">Véhicules Terrestres:</label>
+                    <div id="land-vehicles" class="vehicle-selection">
+                        <div>
+                            <select name="vehicles-land">
+                                <optgroup label="Tanks">
+                                    <option value="M4 Sherman">M4 Sherman</option>
+                                    <option value="T-72">T-72</option>
+                                    <option value="M3 Bradley">M3 Bradley</option>
+                                    <option value="ADATS">ADATS</option>
+                                    <option value="Leopard 2A7">Leopard 2A7</option>
+                                    <option value="MAUS">MAUS</option>
+                                    <option value="M1 Abrams">M1 Abrams</option>
+                                    <option value="T-90">T-90</option>
+                                    <option value="T-14 Armata">T-14 Armata</option>
+                                    <option value="PL-01">PL-01</option>
+                                    <option value="AbramsX">AbramsX</option>
+                                </optgroup>
+                                <optgroup label="Véhicules non armés">
+                                    <option value="MRZR Buggy">MRZR Buggy</option>
+                                    <option value="Speedy Humvee">Speedy Humvee</option>
+                                    <option value="ATV">ATV</option>
+                                    <option value="Humvee">Humvee</option>
+                                </optgroup>
+                                <optgroup label="Véhicules armés">
+                                    <option value="Gurkha MPV">Gurkha MPV</option>
+                                    <option value="JLTV">JLTV</option>
+                                    <option value="M1117 Guardian">M1117 Guardian</option>
+                                    <option value="Lazar 3 APC">Lazar 3 APC</option>
+                                    <option value="M142 HIMARS">M142 HIMARS</option>
+                                    <option value="Pantsir S1">Pantsir S1</option>
+                                    <option value="Patriot AA">Patriot AA</option>
+                                    <option value="LAV-AD">LAV-AD</option>
+                                    <option value="Boxer CRV">Boxer CRV</option>
+                                </optgroup>
+                            </select>
+                            <input type="number" min="1" value="1" name="vehicles-land-quantity">
+                            <button type="button" class="remove-vehicle-btn">Remove</button>
+                        </div>
+                    </div>
+                    <button type="button" class="add-vehicle-btn" data-vehicle-type="land">Add Vehicle</button>
+                </div>
 
-  <table id="sanctionsTable">
-    <thead>
-      <tr>
-        <th>Sanction</th>
-        <th>Temps</th>
-        <th>Raison de la sanction</th>
-        <th>Violation de quel article</th>
-        <th>Exemples</th>
-      </tr>
-    </thead>
-    <tbody>
-      <!-- Tableau complet des sanctions -->
-      <tr>
-        <td><span class="icon icon-warning fas fa-exclamation-triangle"></span> Avertissement</td>
-        <td>N/A</td>
-        <td>Comportement inapproprié, non respect des règles du serveur</td>
-        <td>Articles 1.1, 1.2, 2.1, 2.2, 3.1, 4.1, 4.2, 5.1, 6.1, 6.2, 7.1, 8.1, 8.2</td>
-        <td>Utilisateur utilisant un langage grossier dans le chat général, poste de contenu inapproprié dans un canal de discussion spécifique</td>
-      </tr>
-      <tr>
-        <td><span class="icon icon-kick fas fa-ban"></span> Kick</td>
-        <td>N/A</td>
-        <td>Infractions mineures, avertissements ignorés</td>
-        <td>Articles 1.1, 1.2, 2.1, 2.2, 3.1, 4.1, 4.2, 5.1, 6.1, 6.2, 7.1, 8.1, 8.2</td>
-        <td>Spamming dans le canal général, hors-sujet persistant dans une discussion spécifique</td>
-      </tr>
-      <tr>
-        <td><span class="icon icon-mute fas fa-volume-mute"></span> Mute temporaire</td>
-        <td>5 minutes</td>
-        <td>Langage inapproprié, violation de l'article 1.2</td>
-        <td>Article 1.2</td>
-        <td>Utilisateur utilisant des jurons de manière excessive</td>
-      </tr>
-      <tr>
-        <td><span class="icon icon-mute fas fa-volume-mute"></span> Mute temporaire</td>
-        <td>15 minutes</td>
-        <td>Harcèlement mineur, violation de l'article 1.1</td>
-        <td>Article 1.1</td>
-        <td>Utilisateur faisant des commentaires désobligeants</td>
-      </tr>
-      <tr>
-        <td><span class="icon icon-mute fas fa-volume-mute"></span> Mute temporaire</td>
-        <td>30 minutes</td>
-        <td>Violation des canaux et des sujets, violation de l'article 2.2</td>
-        <td>Article 2.2</td>
-        <td>Utilisateur postant du contenu hors-sujet dans plusieurs canaux</td>
-      </tr>
-      <tr>
-        <td><span class="icon icon-mute fas fa-volume-mute"></span> Mute temporaire</td>
-        <td>1 heure</td>
-        <td>Insultes, non respect des avertissements, violation de l'article 1.1, 3.1</td>
-        <td>Articles 1.1, 3.1</td>
-        <td>Utilisateur proférant des insultes envers d'autres membres</td>
-      </tr>
-      <tr>
-        <td><span class="icon icon-mute fas fa-volume-mute"></span> Mute temporaire</td>
-        <td>1 jour</td>
-        <td>Contenu inapproprié, récidive après des avertissements, violation de l'article 2.1</td>
-        <td>Article 2.1</td>        <td>Utilisateur partageant du contenu adulte ou choquant</td>
-      </tr>
-      <tr>
-        <td><span class="icon icon-mute fas fa-volume-mute"></span> Mute temporaire</td>
-        <td>1 semaine</td>
-        <td>Violation grave des règles, violation de l'article 8.1</td>
-        <td>Article 8.1</td>
-        <td>Utilisateur partageant du contenu violent ou exploiteur</td>
-      </tr>
-      <tr>
-        <td><span class="icon icon-ban fas fa-ban"></span> Ban temporaire</td>
-        <td>1 jour</td>
-        <td>Infractions graves, récidive malgré des avertissements, violation de l'article 3.1</td>
-        <td>Article 3.1</td>
-        <td>Utilisateur contestant publiquement les décisions des modérateurs malgré des avertissements précédents</td>
-      </tr>
-      <tr>
-        <td><span class="icon icon-ban fas fa-ban"></span> Ban temporaire</td>
-        <td>1 semaine</td>
-        <td>Comportement nuisible persistant, violation de l'article 5.1</td>
-        <td>Article 5.1</td>
-        <td>Utilisateur perturbant régulièrement le serveur</td>
-      </tr>
-      <tr>
-        <td><span class="icon icon-ban fas fa-ban"></span> Ban permanent</td>
-        <td>Permanent</td>
-        <td>Infractions graves répétées, non respect des règles fondamentales, violation de l'article 8.2</td>
-        <td>Article 8.2</td>
-        <td>Utilisateur faisant la promotion de contenu violent ou exploiteur, harcèlement répété envers un membre</td>
-      </tr>
-      <tr>
-        <td><span class="icon icon-ban fas fa-ban"></span> Ban permanent</td>
-        <td>Permanent</td>
-        <td>Partage de données personnelles, violation de l'article 4.2</td>
-        <td>Article 4.2</td>
-        <td>Utilisateur partageant les informations personnelles d'un membre sans autorisation</td>
-      </tr>
-    </tbody>
-  </table>
+                <div class="form-section">
+                    <label for="vehicles-air">Véhicules Aériens:</label>
+                    <div id="air-vehicles" class="vehicle-selection">
+                        <div>
+                            <select name="vehicles-air">
+                                <option value="UH-72B Lakota">UH-72B Lakota</option>
+                                <option value="AH-6 Littlebird">AH-6 Littlebird</option>
+                                <option value="UD-1D Huey">UD-1D Huey</option>
+                                <option value="UH-60 Black Hawk">UH-60 Black Hawk</option>
+                                <option value="Super Stallion">Super Stallion</option>
+                                <option value="AH-64 Apache">AH-64 Apache</option>
+                                <option value="KA-52 Alligator">KA-52 Alligator</option>
+                                <option value="Eurocopter Tiger">Eurocopter Tiger</option>
+                                <option value="Mi24 Hind">Mi24 Hind</option>
+                                <option value="Delorean">Delorean</option>
+                            </select>
+                            <input type="number" min="1" value="1" name="vehicles-air-quantity">
+                            <button type="button" class="remove-vehicle-btn">Remove</button>
+                        </div>
+                    </div>
+                    <button type="button" class="add-vehicle-btn" data-vehicle-type="air">Add Vehicle</button>
+                </div>
 
-  <!-- Légende -->
-  <div class="legend">
-    <div class="legend-item"><span class="icon icon-warning fas fa-exclamation-triangle"></span> Avertissement</div>
-    <div class="legend-item"><span class="icon icon-kick fas fa-ban"></span> Kick</div>
-    <div class="legend-item"><span class="icon icon-mute fas fa-volume-mute"></span> Mute</div>
-    <div class="legend-item"><span class="icon icon-ban fas fa-ban"></span> Ban</div>
-  </div>
-</div>
+                <div class="form-section">
+                    <label for="vehicles-sea">Véhicules Maritimes:</label>
+                    <div id="sea-vehicles" class="vehicle-selection">
+                        <div>
+                            <select name="vehicles-sea">
+                                <optgroup label="Frégates">
+                                    <option value="Fairmile">Fairmile</option>
+                                    <option value="PG-02">PG-02</option>
+                                    <option value="USS Douglas">USS Douglas</option>
+                                    <option value="Vietnam River Boat">Vietnam River Boat</option>
+                                    <option value="SURC">SURC</option>
+                                </optgroup>
+                                <optgroup label="Bateaux">
+                                    <option value="RHIB">RHIB</option>
+                                    <option value="Jetski">Jetski</option>
+                                </optgroup>
+                            </select>
+                            <input type="number" min="1" value="1" name="vehicles-sea-quantity">
+                            <button type="button" class="remove-vehicle-btn">Remove</button>
+                        </div>
+                    </div>
+                    <button type="button" class="add-vehicle-btn" data-vehicle-type="sea">Add Vehicle</button>
+                </div>
 
-<script>
-function searchTable() {
-  // Récupérer la valeur de recherche
-  var input, filter, table, tr, td, i, txtValue;
-  input = document.getElementById("searchInput");
-  filter = input.value.toUpperCase();
-  table = document.getElementById("sanctionsTable");
-  tr = table.getElementsByTagName("tr");
+                <div class="form-section">
+                    <label for="soldiers">Nombre de Soldats:</label>
+                    <input type="number" id="soldiers" name="soldiers" required>
+                </div>
 
-  // Parcourir toutes les lignes de la table et masquer celles qui ne correspondent pas à la recherche
-  for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td");
-    for (var j = 0; j < td.length; j++) {
-      if (td[j]) {
-        txtValue = td[j].textContent || td[j].innerText;
-        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-          tr[i].style.display = "";
-          break;
-        } else {
-          tr[i].style.display = "none";
-        }
-      }
-    }
-  }
-}
-</script>
+                <div class="form-section">
+                    <label for="instructions">Instructions:</label>
+                    <textarea id="instructions" name="instructions" rows="3" required></textarea>
+                </div>
 
+                <div class="form-section">
+                    <label for="given-by">Ordonner par:</label>
+                    <input type="text" id="given-by" name="given-by" required>
+                </div>
+
+                <div class="form-section">
+                    <label for="security-level">Niveau de Sécurité:</label>
+                    <select id="security-level" name="security-level" required>
+                        <option value="low" class="security-low">FAIBLE</option>
+                        <option value="medium" class="security-medium">MOYEN</option>
+                        <option value="high" class="security-high">ÉLEVÉ</option>
+                    </select>
+                </div>
+
+                <button type="submit">Enregistrer l'Opération</button>
+            </form>
+        </section>
+
+        <section id="discord-config">
+            <h2>Configuration Discord</h2>
+            <form id="discord-form">
+                <div class="form-section">
+                    <label for="discord-webhook-url">Lien Webhook Discord:</label>
+                    <input type="url" id="discord-webhook-url" name="discord-webhook-url" required>
+                </div>
+
+                <div class="form-section">
+                    <label for="embed-logo-url">Logo pour le message Embed:</label>
+                    <input type="url" id="embed-logo-url" name="embed-logo-url">
+                </div>
+
+                <button type="submit">Enregistrer</button>
+            </form>
+        </section>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const operationForm = document.getElementById('operation-form');
+            const discordForm = document.getElementById('discord-form');
+            let discordWebhookUrl = '';
+            let embedLogoUrl = '';
+
+            discordForm.addEventListener('submit', function (event) {
+                event.preventDefault();
+                discordWebhookUrl = discordForm["discord-webhook-url"].value;
+                embedLogoUrl = discordForm["embed-logo-url"].value;
+                alert('Configuration Discord enregistrée.');
+            });
+
+            operationForm.addEventListener('submit', function (event) {
+                event.preventDefault();
+
+                const operation = {
+                    type: operationForm["operation-type"].value,
+                    baseAttack: operationForm["base-attack"].value,
+                    vehiclesLand: Array.from(operationForm.querySelectorAll('select[name="vehicles-land"]')).map((select, index) => {
+                        const quantity = operationForm.querySelectorAll('input[name="vehicles-land-quantity"]')[index].value;
+                        return `${select.value} x${quantity}`;
+                    }).filter(value => value),
+                    vehiclesAir: Array.from(operationForm.querySelectorAll('select[name="vehicles-air"]')).map((select, index) => {
+                        const quantity = operationForm.querySelectorAll('input[name="vehicles-air-quantity"]')[index].value;
+                        return `${select.value} x${quantity}`;
+                    }).filter(value => value),
+                    vehiclesSea: Array.from(operationForm.querySelectorAll('select[name="vehicles-sea"]')).map((select, index) => {
+                        const quantity = operationForm.querySelectorAll('input[name="vehicles-sea-quantity"]')[index].value;
+                        return `${select.value} x${quantity}`;
+                    }).filter(value => value),
+                    soldiers: operationForm.soldiers.value,
+                    instructions: operationForm.instructions.value,
+                    givenBy: operationForm["given-by"].value,
+                    securityLevel: operationForm["security-level"].value,
+                };
+
+                sendOperationToDiscord(operation);
+                operationForm.reset();
+            });
+
+            function sendOperationToDiscord(operation) {
+                const embed = {
+                    title: "📋 NOUVELLE OPÉRATION ENREGISTRÉE",
+                    color: 3447003,
+                    fields: [
+                        { name: "TYPE D'OPÉRATION", value: operation.type },
+                        { name: "BASE D'ATTAQUE", value: operation.baseAttack },
+                        { name: "VÉHICULES TERRESTRES", value: operation.vehiclesLand.join(', ') || 'Aucun' },
+                        { name: "VÉHICULES AÉRIENS", value: operation.vehiclesAir.join(', ') || 'Aucun' },
+                        { name: "VÉHICULES MARITIMES", value: operation.vehiclesSea.join(', ') || 'Aucun' },
+                        { name: "SOLDATS", value: operation.soldiers },
+                        { name: "INSTRUCTIONS", value: operation.instructions },
+                        { name: "ORDONNER PAR", value: operation.givenBy },
+                        { name: "NIVEAU DE SÉCURITÉ", value: operation.securityLevel },
+                    ],
+                    thumbnail: {
+                        url: embedLogoUrl || ''
+                    }
+                };
+
+                const payload = JSON.stringify({ embeds: [embed] });
+
+                fetch(discordWebhookUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: payload
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    console.log('Message sent to Discord successfully');
+                })
+                .catch(error => {
+                    console.error('There was a problem with the fetch operation:', error);
+                });
+            }
+
+            document.querySelectorAll('.add-vehicle-btn').forEach(button => {
+                button.addEventListener('click', event => {
+                    const vehicleType = event.target.getAttribute('data-vehicle-type');
+                    addVehicleSelection(vehicleType);
+                });
+            });
+
+            function addVehicleSelection(type) {
+                const vehicleSelectOptions = {
+                    land: {
+                        tanks: ["M4 Sherman", "T-72", "M3 Bradley", "ADATS", "Leopard 2A7", "MAUS", "M1 Abrams", "T-90", "T-14 Armata", "PL-01", "AbramsX"],
+                        "non-armed": ["MRZR Buggy", "Speedy Humvee", "ATV", "Humvee"],
+                        armed: ["Gurkha MPV", "JLTV", "M1117 Guardian", "Lazar 3 APC", "M142 HIMARS", "Pantsir S1", "Patriot AA", "LAV-AD", "Boxer CRV"]
+                    },
+                    air: ["UH-72B Lakota", "AH-6 Littlebird", "UD-1D Huey", "UH-60 Black Hawk", "Super Stallion", "AH-64 Apache", "KA-52 Alligator", "Eurocopter Tiger", "Mi24 Hind", "Delorean"],
+                    sea: {
+                        frigates: ["Fairmile", "PG-02", "USS Douglas", "Vietnam River Boat", "SURC"],
+                        boats: ["RHIB", "Jetski"]
+                    }
+                };
+
+                const vehicleSelectionDiv = document.createElement('div');
+                const select = document.createElement('select');
+                select.name = `vehicles-${type}`;
+
+                if (type === 'land' || type === 'sea') {
+                    for (const [group, vehicles] of Object.entries(vehicleSelectOptions[type])) {
+                        const optgroup = document.createElement('optgroup');
+                        optgroup.label = group.charAt(0).toUpperCase() + group.slice(1);
+                        vehicles.forEach(vehicle => {
+                            const option = document.createElement('option');
+                            option.value = vehicle;
+                            option.text = vehicle;
+                            optgroup.appendChild(option);
+                        });
+                        select.appendChild(optgroup);
+                    }
+                } else {
+                    vehicleSelectOptions[type].forEach(vehicle => {
+                        const option = document.createElement('option');
+                        option.value = vehicle;
+                        option.text = vehicle;
+                        select.appendChild(option);
+                    });
+                }
+
+                const quantityInput = document.createElement('input');
+                quantityInput.type = 'number';
+                quantityInput.min = '1';
+                quantityInput.value = '1';
+                quantityInput.name = `vehicles-${type}-quantity`;
+
+                const removeButton = document.createElement('button');
+                removeButton.type = 'button';
+                removeButton.className = 'remove-vehicle-btn';
+                removeButton.textContent = 'Remove';
+
+                removeButton.addEventListener('click', () => {
+                    vehicleSelectionDiv.remove();
+                });
+
+                vehicleSelectionDiv.appendChild(select);
+                vehicleSelectionDiv.appendChild(quantityInput);
+                vehicleSelectionDiv.appendChild(removeButton);
+
+                document.getElementById(`${type}-vehicles`).appendChild(vehicleSelectionDiv);
+            }
+        });
+    </script>
 </body>
 </html>
